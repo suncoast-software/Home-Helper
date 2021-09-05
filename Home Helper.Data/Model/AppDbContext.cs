@@ -12,7 +12,7 @@ namespace Home_Helper.Data.Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=homeHelperDb;User ID=postgres;Password=451145_Gl");
+            optionsBuilder.UseNpgsql("Server=HOST;Port=PORT;Database=homeHelperDb;User ID=USERID;Password=PASSWORD");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
