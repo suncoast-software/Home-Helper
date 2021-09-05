@@ -12,12 +12,7 @@ namespace Home_Helper.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(bool)value)
-                return "No";
-            else
-            {
-                return "Yes";
-            }
+            return ((bool)value) ? "Yes" : "No";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
