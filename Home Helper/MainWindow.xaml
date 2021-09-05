@@ -133,7 +133,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Bill Id" Binding="{Binding Id}"/>
                                 <DataGridTextColumn Header="Account #" Binding="{Binding AccountNumber}"/>
-                                <DataGridTextColumn Header="Payee" Binding="{Binding Payee.Name}"/>
+                                <DataGridTextColumn Header="Payee" Binding="{Binding Payee.PayeeName}"/>
                                 <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate}"/>
                                 <DataGridTextColumn Header="Paid Date" Binding="{Binding PaidDate}"/>
                                 <DataGridTextColumn Header="Confirmation #" Binding="{Binding ConfirmationNumber}"/>
@@ -401,7 +401,7 @@
                                             Margin="10"
                                             Command="{Binding AddNewBillCommand}"/>
                                     <Button Content="CANCEL" Margin="0 0 10 0"/>
-                                    
+
                                 </StackPanel>
                                
                             </Grid>

@@ -24,6 +24,13 @@ namespace Home_Helper.ViewModel
             set => OnPropertyChanged(ref _bills, value);
         }
 
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set => OnPropertyChanged(ref _password, value);
+        }
+
         public AppViewModel()
         {
             CurrentDate = DateTime.Now.ToShortDateString();
@@ -35,8 +42,9 @@ namespace Home_Helper.ViewModel
         {
             Bill bill = new()
             {
+                Id = 1,
                 AccountNumber = "1234",
-                Payee = null,
+                Payee = new Payee() { PayeeName = "Best Buy" },
                 DueDate = DateTime.Parse(CurrentDate),
                 PaidDate = DateTime.Now,
                 ConfirmationNumber = "123456",
