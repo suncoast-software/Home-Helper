@@ -106,6 +106,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="300"/>
+                        <RowDefinition Height="180"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     
@@ -147,6 +148,7 @@
                     <Border Grid.Column="0"
                             Grid.Row="1"
                             Grid.ColumnSpan="1"
+                            Grid.RowSpan="2"
                             Background="#2b2b2b"
                             BorderBrush="#fcc100"
                             BorderThickness=".5"
@@ -186,7 +188,7 @@
                                 <TextBlock Grid.Column="0"
                                        Grid.Row="0"
                                        Grid.ColumnSpan="2"
-                                       Text="PAY BILL"
+                                       Text="ADD NEW BILL"
                                        FontSize="14"
                                        FontWeight="Bold"
                                        Foreground="LightGray"
@@ -300,7 +302,7 @@
                                         Grid.Row="7"
                                         Grid.Column="1"
                                         HorizontalAlignment="Right">
-                                <Button Content="Pay Bill"
+                                <Button Content="ADD Bill"
                                         Width="100"
                                         Margin="20 0">
                                     
@@ -410,6 +412,101 @@
                         </Grid>
                     </Border>
                     <!-- // End Add New Payee // -->
+
+                    <!-- // PAY BILL // -->
+                    <Border Grid.Column="1"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="1"
+                            Height="160"
+                            Background="#2b2b2b"
+                            BorderBrush="#ed2102"
+                            BorderThickness=".45"
+                            CornerRadius="15"
+                            Margin="2 2 2 2"
+                            VerticalAlignment="Top">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="2" ShadowDepth="2" Direction="270" Color="#000" Opacity=".4"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Vertical">
+                                <!-- // Header // -->
+                                <Border Grid.Column="0"
+                                        Grid.Row="0"
+                                        CornerRadius="8 8 0 0"
+                                        Background="#252525"
+                                        Margin="2 2">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="2" ShadowDepth="2" Direction="270" Color="#000" Opacity=".4"/>
+                                    </Border.Effect>
+                                    <TextBlock Grid.Column="0"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Text="PAY BILL"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="LightGray"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 0 2"/>
+                                </Border>
+                                <!-- // End Header // -->
+                            </StackPanel>
+
+
+                            <!-- // Pay Bill // -->
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="10"/>
+                                </Grid.RowDefinitions>
+                                <hc:TextBox hc:InfoElement.Placeholder="Payee Name"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="500"
+                                        Height="40"
+                                        Background="#2b2b2b"
+                                        BorderBrush="{DynamicResource DarkAccentBrush}"
+                                        BorderThickness="0 0 0 .65"
+                                        hc:BorderElement.CornerRadius="8"
+                                        Foreground="#fff"
+                                        FontSize="14">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
+                                    </TextBox.Effect>
+                                </hc:TextBox>
+                                <StackPanel Grid.Column="1"
+                                            Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+
+                                    <Button Content="PAY BILL" 
+                                            Margin="10"
+                                            Command="{Binding AddNewBillCommand}"/>
+                                    <Button Content="CANCEL" Margin="0 0 10 0"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                            <!-- // End Pay Bill // -->
+                        </Grid>
+                    </Border>
 
                 </Grid>
                 <!-- // End Main Content // -->
