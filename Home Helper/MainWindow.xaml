@@ -287,6 +287,12 @@
                                                hc:InfoElement.Placeholder="Due Date">
 
                                 </hc:DatePicker>
+                                <CheckBox Grid.Column="1"
+                                          IsChecked="{Binding Bill.Recurring, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Content="Recurring"
+                                          Foreground="#fcc100"
+                                          FontSize="18"
+                                          HorizontalAlignment="Center"/>
                             </Grid>
                             <StackPanel Orientation="Horizontal"
                                         Grid.Row="6"
@@ -294,7 +300,8 @@
                                         HorizontalAlignment="Right">
                                 <Button Content="ADD Bill"
                                         Width="100"
-                                        Margin="20 0">
+                                        Margin="20 0"
+                                        Command="{Binding AddNewBillCommand}">
                                     
                                 </Button>
                                 <Button Content="Cancel"

@@ -9,10 +9,8 @@ namespace Home_Helper.Data.Model
 {
     public class AppDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions options) : base(options)
         {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseNpgsql("Server=HOST;Port=PORT;Database=homeHelperDb;User ID=USERID;Password=PASSWORD");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -5,11 +5,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Home_Helper.ViewModel
 {
     public class AppViewModel : BaseViewModel
     {
+        public ICommand AddNewBillCommand { get; set; }
+
         private string _currentDate;
         public string CurrentDate
         {
@@ -24,18 +28,25 @@ namespace Home_Helper.ViewModel
             set => OnPropertyChanged(ref _bills, value);
         }
 
-        private string _password;
-        public string Password
+        private Bill _bill;
+        public Bill Bill
         {
-            get => _password;
-            set => OnPropertyChanged(ref _password, value);
+            get => _bill;
+            set => OnPropertyChanged(ref _bill, value);
         }
 
         public AppViewModel()
         {
             CurrentDate = DateTime.Now.ToShortDateString();
             Bills = new ObservableCollection<Bill>();
+            AddNewBillCommand = new RelayCommand(AddNewBill);
+            Bill = new();
             LoadBills();
+        }
+
+        private void AddNewBill()
+        {
+            _ = MessageBox.Show("Test");
         }
 
         private void LoadBills()
