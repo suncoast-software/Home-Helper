@@ -15,11 +15,12 @@
         AllowsTransparency="True"
         Background="{x:Null}" 
         Title="Home Helper" Height="900" Width="1400" ResizeMode="NoResize">
-    
+
     <Window.Resources>
         <converter:BoolToStringConverter x:Key="boolConverter" />
     </Window.Resources>
-    <Grid Height="880" Width="1380"> <!-- // MAIN WRAPPER // -->
+    <Grid Height="880" Width="1380">
+        <!-- // MAIN WRAPPER // -->
 
         <!-- BORDER WRAPPER -->
         <Border x:Name="Main_Wrapper" 
@@ -36,7 +37,7 @@
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
                 <!-- // END // -->
-                
+
                 <!-- // Row Definitions // -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -44,7 +45,7 @@
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <!-- // END // -->
-                
+
                 <!-- // Header // -->
                 <Border x:Name="Header_Border"
                         Style="{StaticResource Default_Header_Style}"
@@ -53,7 +54,7 @@
                         Grid.ColumnSpan="3"
                         Margin="0 0 0 2"
                         MouseDown="Header_Border_MouseDown">
-                    
+
                     <TextBlock Text="Home Helper"
                                Foreground="LightGray"
                                FontSize="18"
@@ -63,7 +64,7 @@
 
                 </Border>
                 <!-- // End Header // -->
-                
+
                 <!-- // Left Nav // -->
                 <Border Grid.Column="0"
                         Grid.Row="1"
@@ -79,13 +80,13 @@
                               Margin="10"
                               BorderBrush="#fff"
                               BorderThickness=".25">
-                        
+
                     </ListView>
                     <!-- // End ListView Nav // -->
-                    
+
                 </Border>
                 <!-- End Left Nav // -->
-                
+
                 <!-- // Right Payee List // -->
                 <Border Grid.Column="2"
                         Grid.Row="1"
@@ -109,11 +110,11 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="300"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
                         <RowDefinition Height="180"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <!-- // Bills Datagrid // -->
                     <Border Grid.Column="0"
                             Grid.Row="0"
@@ -137,12 +138,12 @@
                                   CanUserAddRows="False"
                                   Foreground="#fcc100">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Bill Id" Binding="{Binding Id}"/>
-                                <DataGridTextColumn Header="Account #" Binding="{Binding AccountNumber}"/>
-                                <DataGridTextColumn Header="Payee" Binding="{Binding Payee.PayeeName}"/>
-                                <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate}"/>
-                                <DataGridTextColumn Header="Paid Date" Binding="{Binding PaidDate}"/>
-                                <DataGridTextColumn Header="Confirmation #" Binding="{Binding ConfirmationNumber}"/>
+                                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Account #" Binding="{Binding AccountNumber}" Width="160"/>
+                                <DataGridTextColumn Header="Payee" Binding="{Binding Payee.PayeeName}" Width="140"/>
+                                <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate}" Width="160"/>
+                                <DataGridTextColumn Header="Paid Date" Binding="{Binding PaidDate}" Width="160"/>
+                                <DataGridTextColumn Header="Confirmation #" Binding="{Binding ConfirmationNumber}" Width="160"/>
                                 <DataGridTextColumn Header="Recurring" Binding="{Binding Recurring, Converter={StaticResource boolConverter}}"/>
                                 <DataGridTextColumn Header="Paid" Binding="{Binding Paid, Converter={StaticResource boolConverter}}"/>
                             </DataGrid.Columns>
@@ -156,7 +157,7 @@
                         </DataGrid>
                     </Border>
                     <!-- // End Bills Datagrid // -->
-                    
+
                     <!-- // Add New Bill // -->
                     <Border Grid.Column="0"
                             Grid.Row="2"
@@ -167,7 +168,7 @@
                             BorderThickness=".5"
                             CornerRadius="15"
                             Margin="2 2 2 2"
-                            Height="443"
+                            Height="442"
                             VerticalAlignment="Top">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="2" ShadowDepth="2" Direction="270" Color="#000" Opacity=".4"/>
@@ -187,7 +188,7 @@
                                 <RowDefinition Height="60"/>
 
                                 <RowDefinition Height="10"/>
-                               
+
                             </Grid.RowDefinitions>
                             <!-- // Header // -->
                             <Border Grid.Column="1"
@@ -210,7 +211,8 @@
                                        Margin="0 0 0 2"/>
                             </Border>
                             <!-- // End Header // -->
-                            <hc:TextBox hc:InfoElement.Placeholder="Bill Name"
+
+                            <hc:TextBox hc:InfoElement.Placeholder="Account #"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="500"
@@ -220,12 +222,13 @@
                                         BorderThickness="0 0 0 .65"
                                         hc:BorderElement.CornerRadius="8"
                                         Foreground="#fcc100"
-                                        FontSize="16">
+                                        FontSize="16"
+                                        Text="{Binding Bill.AccountNumber}">
                                 <TextBox.Effect>
                                     <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
                                 </TextBox.Effect>
                             </hc:TextBox>
-                            <hc:TextBox hc:InfoElement.Placeholder="Account #"
+                            <hc:TextBox hc:InfoElement.Placeholder="Payee Name"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         Width="500"
@@ -240,7 +243,7 @@
                                     <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
                                 </TextBox.Effect>
                             </hc:TextBox>
-                            <hc:TextBox hc:InfoElement.Placeholder="Payee Name"
+                            <hc:TextBox hc:InfoElement.Placeholder="Bill Amount"
                                         Grid.Row="3"
                                         Grid.Column="1"
                                         Width="500"
@@ -255,23 +258,8 @@
                                     <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
                                 </TextBox.Effect>
                             </hc:TextBox>
-                            <hc:TextBox hc:InfoElement.Placeholder="Bill Amount"
-                                        Grid.Row="4"
-                                        Grid.Column="1"
-                                        Width="500"
-                                        Height="40"
-                                        Background="#2b2b2b"
-                                        BorderBrush="#fcc100"
-                                        BorderThickness="0 0 0 .65"
-                                        hc:BorderElement.CornerRadius="8"
-                                        Foreground="#fcc100"
-                                        FontSize="16">
-                                <TextBox.Effect>
-                                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
-                                </TextBox.Effect>
-                            </hc:TextBox>
-                           
-                            <Grid Grid.Row="5"
+
+                            <Grid Grid.Row="4"
                                   Grid.Column="1">
 
                                 <Grid.ColumnDefinitions>
@@ -295,14 +283,14 @@
                                           HorizontalAlignment="Center"/>
                             </Grid>
                             <StackPanel Orientation="Horizontal"
-                                        Grid.Row="6"
+                                        Grid.Row="5"
                                         Grid.Column="1"
                                         HorizontalAlignment="Right">
                                 <Button Content="ADD Bill"
                                         Width="100"
                                         Margin="20 0"
                                         Command="{Binding AddNewBillCommand}">
-                                    
+
                                 </Button>
                                 <Button Content="Cancel"
                                         Width="100"
@@ -331,13 +319,13 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                            
+
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
-                           
+
                             <StackPanel Orientation="Vertical">
                                 <!-- // Header // -->
                                 <Border Grid.Column="0"
@@ -361,7 +349,7 @@
                                 </Border>
                                 <!-- // End Header // -->
                             </StackPanel>
-                           
+
 
                             <!-- // Payee Info // -->
                             <Grid Grid.Row="1">
@@ -395,16 +383,16 @@
                                             Grid.Row="2"
                                             Orientation="Horizontal"
                                             HorizontalAlignment="Center">
-                                    
+
                                     <Button Content="ADD NEW PAYEE" 
                                             Margin="10"
                                             Command="{Binding AddNewBillCommand}"/>
                                     <Button Content="CANCEL" Margin="0 0 10 0"/>
 
                                 </StackPanel>
-                               
+
                             </Grid>
-                           
+
                             <!-- // End Payee Info // -->
                         </Grid>
                     </Border>
@@ -426,7 +414,10 @@
                         </Border.Effect>
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="20"/>
+                                
 
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -434,7 +425,7 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" Grid.ColumnSpan="3">
                                 <!-- // Header // -->
                                 <Border Grid.Column="0"
                                         Grid.Row="0"
@@ -460,7 +451,7 @@
 
 
                             <!-- // Pay Bill Info // -->
-                            <Grid Grid.Row="2">
+                            <Grid Grid.Row="1" Grid.ColumnSpan="3">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="*"/>
@@ -537,7 +528,7 @@
 
                 </Grid>
                 <!-- // End Main Content // -->
-                
+
                 <!-- // Footer // -->
                 <Border Style="{StaticResource Default_Footer_Style}"
                         Grid.Column="0"
@@ -554,10 +545,10 @@
 
                 </Border>
                 <!-- // End Footer // -->
-                
+
             </Grid>
         </Border>
         <!-- // END // -->
     </Grid>
-    
+
 </Window>
