@@ -14,7 +14,7 @@ namespace Home_Helper.Data.Factories
         public AppDbContext CreateDbContext(string[] args = null)
         {
             var options = new DbContextOptionsBuilder<AppDbContext>();
-            options.UseNpgsql("Server=localhost;Port=5432;Database=homeHelperDb;User ID=postgres;Password=451145_Gl");
+            options.UseNpgsql("Server=SERVER;Port=PORT;Database=DB;User ID=USERID;Password=PASSWORD");
 
             return new AppDbContext(options.Options);
         }
