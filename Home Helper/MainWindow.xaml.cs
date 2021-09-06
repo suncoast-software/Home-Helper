@@ -28,5 +28,16 @@ namespace Home_Helper
             DataContext = new AppViewModel();
             ConfigHelper.Instance.SetLang("en");
         }
+
+        //this is the only time I use code behind to write code, because it is view specific!
+        private void Header_Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                Cursor = Cursors.Hand;
+                DragMove();
+            }
+            Cursor = Cursors.Arrow;
+        }
     }
 }

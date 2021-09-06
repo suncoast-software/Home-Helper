@@ -48,9 +48,34 @@ namespace Home_Helper.ViewModel
                 DueDate = DateTime.Parse(CurrentDate),
                 PaidDate = DateTime.Now,
                 ConfirmationNumber = "123456",
+                Recurring = true,
                 Paid = true,
             };
+            Bill bill1 = new()
+            {
+                Id = 2,
+                AccountNumber = "2222",
+                Payee = new Payee() { PayeeName = "Florida Power & Light(FPL)" },
+                DueDate = DateTime.Parse(CurrentDate),
+                PaidDate = DateTime.Now,
+                ConfirmationNumber = "22222222",
+                Recurring = true,
+                Paid = true,
+            };
+            Bill bill2 = new()
+            {
+                Id = 3,
+                AccountNumber = "3333",
+                Payee = new Payee() { PayeeName = "Honda International" },
+                DueDate = DateTime.Parse(CurrentDate),
+                PaidDate = DateTime.Now,
+                ConfirmationNumber = "333333",
+                Recurring = true,
+                Paid = false,
+            };
             Bills.Add(bill);
+            Bills.Add(bill1);
+            Bills.Add(bill2);
         }
     }
 }

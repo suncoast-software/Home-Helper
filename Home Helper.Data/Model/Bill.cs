@@ -12,6 +12,7 @@ namespace Home_Helper.Data.Model
         public DateTime DueDate { get; set; }
         public DateTime PaidDate { get; set; }
         public string ConfirmationNumber { get; set; }
+        public bool Recurring { get; set; }
         public bool Paid { get; set; }
     }
 }

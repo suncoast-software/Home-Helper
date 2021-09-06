@@ -15,6 +15,7 @@
         AllowsTransparency="True"
         Background="{x:Null}" 
         Title="Home Helper" Height="900" Width="1400" ResizeMode="NoResize">
+    
     <Window.Resources>
         <converter:BoolToStringConverter x:Key="boolConverter" />
     </Window.Resources>
@@ -45,18 +46,20 @@
                 <!-- // END // -->
                 
                 <!-- // Header // -->
-                <Border Style="{StaticResource Default_Header_Style}"
+                <Border x:Name="Header_Border"
+                        Style="{StaticResource Default_Header_Style}"
                         Grid.Column="0"
                         Grid.Row="0"
                         Grid.ColumnSpan="3"
-                        Margin="0 0 0 2">
+                        Margin="0 0 0 2"
+                        MouseDown="Header_Border_MouseDown">
                     
                     <TextBlock Text="Home Helper"
-                                   Foreground="LightGray"
-                                   FontSize="18"
-                                   FontWeight="DemiBold"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+                               Foreground="LightGray"
+                               FontSize="18"
+                               FontWeight="DemiBold"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
 
                 </Border>
                 <!-- // End Header // -->
@@ -106,6 +109,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="300"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="180"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
@@ -127,8 +131,9 @@
                         </Border.Effect>
                         <DataGrid Background="Transparent"
                                   ItemsSource="{Binding Bills}"
-                                  AlternatingRowBackground="LightGray"
+                                  AlternatingRowBackground="#222323"
                                   AutoGenerateColumns="False"
+                                  VerticalGridLinesBrush="#fff"
                                   CanUserAddRows="False"
                                   Foreground="#fcc100">
                             <DataGrid.Columns>
@@ -138,15 +143,23 @@
                                 <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate}"/>
                                 <DataGridTextColumn Header="Paid Date" Binding="{Binding PaidDate}"/>
                                 <DataGridTextColumn Header="Confirmation #" Binding="{Binding ConfirmationNumber}"/>
+                                <DataGridTextColumn Header="Recurring" Binding="{Binding Recurring, Converter={StaticResource boolConverter}}"/>
                                 <DataGridTextColumn Header="Paid" Binding="{Binding Paid, Converter={StaticResource boolConverter}}"/>
                             </DataGrid.Columns>
+                            <DataGrid.Resources>
+                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#1c1c1c"/>
+                                    <Setter Property="BorderBrush" Value="#fcc100"/>
+                                    <Setter Property="BorderThickness" Value=".5"/>
+                                </Style>
+                            </DataGrid.Resources>
                         </DataGrid>
                     </Border>
                     <!-- // End Bills Datagrid // -->
                     
                     <!-- // Add New Bill // -->
                     <Border Grid.Column="0"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.ColumnSpan="1"
                             Grid.RowSpan="2"
                             Background="#2b2b2b"
@@ -154,7 +167,7 @@
                             BorderThickness=".5"
                             CornerRadius="15"
                             Margin="2 2 2 2"
-                            Height="470"
+                            Height="443"
                             VerticalAlignment="Top">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="2" ShadowDepth="2" Direction="270" Color="#000" Opacity=".4"/>
@@ -172,7 +185,7 @@
                                 <RowDefinition Height="60"/>
                                 <RowDefinition Height="60"/>
                                 <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
+
                                 <RowDefinition Height="10"/>
                                
                             </Grid.RowDefinitions>
@@ -257,22 +270,8 @@
                                     <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
                                 </TextBox.Effect>
                             </hc:TextBox>
-                            <hc:TextBox hc:InfoElement.Placeholder="Comfirmation #"
-                                        Grid.Row="5"
-                                        Grid.Column="1"
-                                        Width="500"
-                                        Height="40"
-                                        Background="#2b2b2b"
-                                        BorderBrush="#fcc100"
-                                        BorderThickness="0 0 0 .65"
-                                        hc:BorderElement.CornerRadius="8"
-                                        Foreground="#fcc100"
-                                        FontSize="16">
-                                <TextBox.Effect>
-                                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
-                                </TextBox.Effect>
-                            </hc:TextBox>
-                            <Grid Grid.Row="6"
+                           
+                            <Grid Grid.Row="5"
                                   Grid.Column="1">
 
                                 <Grid.ColumnDefinitions>
@@ -285,21 +284,12 @@
                                                Margin="20 0 20 0"
                                                FontSize="14"
                                                Foreground="#fcc100"
-                                               hc:InfoElement.Placeholder="Due Date"
-                                               SelectedDate="{Binding CurrentDate}">
-
-                                </hc:DatePicker>
-
-                                <hc:DatePicker Background="{x:Null}"
-                                               Grid.Column="1"
-                                               Height="40"
-                                               Margin="20 0 20 0"
-                                               hc:InfoElement.Placeholder="Paid Date">
+                                               hc:InfoElement.Placeholder="Due Date">
 
                                 </hc:DatePicker>
                             </Grid>
                             <StackPanel Orientation="Horizontal"
-                                        Grid.Row="7"
+                                        Grid.Row="6"
                                         Grid.Column="1"
                                         HorizontalAlignment="Right">
                                 <Button Content="ADD Bill"
@@ -319,7 +309,7 @@
 
                     <!-- // Add New Payee // -->
                     <Border Grid.Column="1"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.ColumnSpan="1"
                             Height="160"
                             Background="#2b2b2b"
@@ -354,7 +344,7 @@
                                     <TextBlock Grid.Column="0"
                                        Grid.Row="0"
                                        Grid.ColumnSpan="2"
-                                       Text="ADD NEW Payee"
+                                       Text="ADD NEW PAYEE"
                                        FontSize="14"
                                        FontWeight="Bold"
                                        Foreground="LightGray"
@@ -415,11 +405,11 @@
 
                     <!-- // PAY BILL // -->
                     <Border Grid.Column="1"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Grid.ColumnSpan="1"
-                            Height="160"
+                            Height="260"
                             Background="#2b2b2b"
-                            BorderBrush="#ed2102"
+                            BorderBrush="#00fc15"
                             BorderThickness=".45"
                             CornerRadius="15"
                             Margin="2 2 2 2"
@@ -462,7 +452,7 @@
                             </StackPanel>
 
 
-                            <!-- // Pay Bill // -->
+                            <!-- // Pay Bill Info // -->
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"/>
@@ -473,6 +463,7 @@
                                     <RowDefinition Height="10"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
                                     <RowDefinition Height="10"/>
                                 </Grid.RowDefinitions>
                                 <hc:TextBox hc:InfoElement.Placeholder="Payee Name"
@@ -481,7 +472,7 @@
                                         Width="500"
                                         Height="40"
                                         Background="#2b2b2b"
-                                        BorderBrush="{DynamicResource DarkAccentBrush}"
+                                        BorderBrush="#00fc15"
                                         BorderThickness="0 0 0 .65"
                                         hc:BorderElement.CornerRadius="8"
                                         Foreground="#fff"
@@ -494,10 +485,39 @@
                                             Grid.Row="2"
                                             Orientation="Horizontal"
                                             HorizontalAlignment="Center">
+                                    <hc:TextBox hc:InfoElement.Placeholder="Confirmation #"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="250"
+                                        Height="40"
+                                        Background="#2b2b2b"
+                                        BorderBrush="#00fc15"
+                                        BorderThickness="0 0 0 .65"
+                                        hc:BorderElement.CornerRadius="8"
+                                        Foreground="#fff"
+                                        FontSize="14">
+                                        <TextBox.Effect>
+                                            <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
+                                        </TextBox.Effect>
+                                    </hc:TextBox>
+                                    <hc:DatePicker Background="{x:Null}"
+                                               Grid.Column="1"
+                                               Height="40"
+                                               Margin="20 0 0 0"
+                                               Width="240"
+                                               hc:InfoElement.Placeholder="Paid Date">
+
+                                    </hc:DatePicker>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1"
+                                            Grid.Row="3"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Right"
+                                            Margin="0 0 20 0">
 
                                     <Button Content="PAY BILL" 
                                             Margin="10"
-                                            Command="{Binding AddNewBillCommand}"/>
+                                            Command="{Binding PayBillCommand}"/>
                                     <Button Content="CANCEL" Margin="0 0 10 0"/>
 
                                 </StackPanel>
