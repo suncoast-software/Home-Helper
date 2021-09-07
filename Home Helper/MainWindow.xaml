@@ -212,22 +212,16 @@
                             </Border>
                             <!-- // End Header // -->
 
-                            <hc:TextBox hc:InfoElement.Placeholder="Account #"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="500"
-                                        Height="40"
-                                        Background="#2b2b2b"
-                                        BorderBrush="#fcc100"
-                                        BorderThickness="0 0 0 .65"
-                                        hc:BorderElement.CornerRadius="8"
-                                        Foreground="#fcc100"
-                                        FontSize="16"
-                                        Text="{Binding Bill.AccountNumber}">
-                                <TextBox.Effect>
-                                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
-                                </TextBox.Effect>
-                            </hc:TextBox>
+                            <TextBox Style="{StaticResource RoundedCornerTextbox}"
+                                     Grid.Row="1"
+                                     Grid.Column="1"
+                                     Width="500"
+                                     Height="40"
+                                     Background="#2b2b2b"
+                                     Foreground="LightGray"
+                                     Text="{Binding Bill.AccountNumber}">
+                               
+                            </TextBox>
                             <hc:TextBox hc:InfoElement.Placeholder="Payee Name"
                                         Grid.Row="2"
                                         Grid.Column="1"
@@ -297,7 +291,9 @@
                                         Margin="0 0 20 0">
 
                                 </Button>
+                                
                             </StackPanel>
+                           
                         </Grid>
                     </Border>
                     <!-- // End Add New Bill // -->
