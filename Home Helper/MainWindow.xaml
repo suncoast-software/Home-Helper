@@ -180,12 +180,12 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
-                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
 
                                 <RowDefinition Height="10"/>
 
@@ -212,16 +212,25 @@
                             </Border>
                             <!-- // End Header // -->
 
-                            <TextBox Style="{StaticResource RoundedCornerTextbox}"
-                                     Grid.Row="1"
-                                     Grid.Column="1"
+                            <StackPanel Grid.Column="1"
+                                        Grid.Row="1"
+                                        Orientation="Vertical">
+                                <Label Foreground="LightGray"
+                                       FontSize="12"
+                                       FontWeight="Light"
+                                       Content="Account #"
+                                       Margin="20 0"/>
+                                <TextBox Style="{StaticResource RoundedCornerTextbox}"
                                      Width="500"
                                      Height="40"
                                      Background="#2b2b2b"
                                      Foreground="LightGray"
                                      Text="{Binding Bill.AccountNumber}">
-                               
-                            </TextBox>
+                                    
+
+                                </TextBox>
+                            </StackPanel>
+                           
                             <hc:TextBox hc:InfoElement.Placeholder="Payee Name"
                                         Grid.Row="2"
                                         Grid.Column="1"
