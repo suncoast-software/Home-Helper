@@ -75,8 +75,8 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border x:Name="border"
                                 CornerRadius="6"
-                                BorderBrush="#000"
-                                BorderThickness=".6"
+                                BorderBrush="LightGray"
+                                BorderThickness=".5"
                                 Background="{TemplateBinding Background}">
                         
                         <ScrollViewer x:Name="PART_ContentHost"
@@ -86,7 +86,7 @@
 
 
                         <Border.Effect>
-                            <DropShadowEffect  BlurRadius="4" ShadowDepth="4" Direction="270" Color="#000" Opacity=".2"/>
+                            <DropShadowEffect  BlurRadius="2" ShadowDepth="1" Direction="270" Color="#000" Opacity=".1"/>
                         </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -98,8 +98,9 @@
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Foreground" Value="LightGray" />
                             <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="#fff"/>
-                            <Setter Property="VerticalAlignment" Value="Bottom" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="#2c2c2c"/>
+                            <Setter Property="BorderThickness" TargetName="border" Value="1" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
