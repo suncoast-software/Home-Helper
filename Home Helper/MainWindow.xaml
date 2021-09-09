@@ -180,12 +180,12 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
-                                <RowDefinition Height="70"/>
-                                <RowDefinition Height="70"/>
-                                <RowDefinition Height="70"/>
-                                <RowDefinition Height="70"/>
-                                <RowDefinition Height="70"/>
-                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
 
                                 <RowDefinition Height="10"/>
 
@@ -211,57 +211,111 @@
                                        Margin="0 0 0 2"/>
                             </Border>
                             <!-- // End Header // -->
-
-                            <StackPanel Grid.Column="1"
-                                        Grid.Row="1"
-                                        Orientation="Vertical">
-                                <Label Foreground="LightGray"
-                                       FontSize="12"
-                                       FontWeight="Light"
-                                       Content="Account #"
-                                       Margin="20 0"/>
-                                <TextBox Style="{StaticResource RoundedCornerTextbox}"
-                                     Width="500"
-                                     Height="40"
-                                     Background="#2b2b2b"
-                                     Foreground="LightGray"
-                                     Text="{Binding Bill.AccountNumber}">
+                            
+                            <!-- // Account # // -->
+                            <Grid Grid.Column="1" Grid.Row="1">
+                                <Border Background="#252525"
+                                        CornerRadius="8"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Width="500"
+                                        Height="50"
+                                        Margin="0 0">
                                     
+                                    <TextBox x:Name="accountbox"
+                                             Width="480"
+                                             Height="40"
+                                             Background="Transparent"
+                                             Foreground="LightGray"
+                                             FontSize="18"
+                                             FontWeight="Light"
+                                             VerticalAlignment="Center"
+                                             Text=""
+                                             TextDecorations="None"/>
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="4"
+                                                          ShadowDepth="2"
+                                                          Color="#000"
+                                                          Opacity=".5"
+                                                          Direction="270"/>
+                                    </Border.Effect>
+                                </Border>
+                                <TextBlock Text="Account #"
+                                               FontWeight="SemiBold"
+                                               FontSize="16"
+                                               TextAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Foreground="Gray"
+                                               IsHitTestVisible="False"
+                                               Margin="30 0">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=accountbox}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
 
-                                </TextBox>
-                            </StackPanel>
-                           
-                            <hc:TextBox hc:InfoElement.Placeholder="Payee Name"
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="500"
-                                        Height="40"
-                                        Background="#2b2b2b"
-                                        BorderBrush="#fcc100"
-                                        BorderThickness="0 0 0 .65"
-                                        hc:BorderElement.CornerRadius="8"
-                                        Foreground="#fcc100"
-                                        FontSize="16">
-                                <TextBox.Effect>
-                                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
-                                </TextBox.Effect>
-                            </hc:TextBox>
-                            <hc:TextBox hc:InfoElement.Placeholder="Bill Amount"
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        Width="500"
-                                        Height="40"
-                                        Background="#2b2b2b"
-                                        BorderBrush="#fcc100"
-                                        BorderThickness="0 0 0 .65"
-                                        hc:BorderElement.CornerRadius="8"
-                                        Foreground="#fcc100"
-                                        FontSize="16">
-                                <TextBox.Effect>
-                                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270" Color="#000" Opacity=".6"/>
-                                </TextBox.Effect>
-                            </hc:TextBox>
+                                </TextBlock>
 
+                            </Grid>
+                            <!-- // Account # // -->
+
+                            <!-- // Bill Name // -->
+                            <Grid Grid.Column="1" Grid.Row="2">
+                                <Border Background="#252525"
+                                        CornerRadius="8"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Width="500"
+                                        Height="50"
+                                        Margin="0 0">
+
+                                    <TextBox x:Name="billnamebox"
+                                             Width="480"
+                                             Height="40"
+                                             Background="Transparent"
+                                             Foreground="LightGray"
+                                             FontSize="18"
+                                             FontWeight="Light"
+                                             VerticalAlignment="Center"
+                                             Text=""
+                                             TextDecorations="None"/>
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="4"
+                                                          ShadowDepth="2"
+                                                          Color="#000"
+                                                          Opacity=".5"
+                                                          Direction="270"/>
+                                    </Border.Effect>
+                                </Border>
+                                <TextBlock Text="Bill Name"
+                                               FontWeight="SemiBold"
+                                               FontSize="16"
+                                               TextAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Foreground="Gray"
+                                               IsHitTestVisible="False"
+                                               Margin="30 0">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=billnamebox}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+
+                                </TextBlock>
+
+                            </Grid>
+
+                            <!-- // DUE DATE - RECURRING // -->
                             <Grid Grid.Row="4"
                                   Grid.Column="1">
 
@@ -285,6 +339,9 @@
                                           FontSize="18"
                                           HorizontalAlignment="Center"/>
                             </Grid>
+                            <!-- // DUE DATE - RECURRING // -->
+
+                            <!-- // COMMAND BUTTONS // -->
                             <StackPanel Orientation="Horizontal"
                                         Grid.Row="5"
                                         Grid.Column="1"
@@ -302,7 +359,7 @@
                                 </Button>
                                 
                             </StackPanel>
-                           
+                            <!-- // COMMAND BUTTONS // -->
                         </Grid>
                     </Border>
                     <!-- // End Add New Bill // -->

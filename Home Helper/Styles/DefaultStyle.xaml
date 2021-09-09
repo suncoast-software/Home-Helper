@@ -69,40 +69,59 @@
         <Setter Property="MinWidth" Value="250"/>
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border x:Name="border"
-                                CornerRadius="6"
-                                BorderBrush="LightGray"
-                                BorderThickness=".5"
-                                Background="{TemplateBinding Background}">
-                        
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                      HorizontalScrollBarVisibility="Hidden"
-                                      VerticalScrollBarVisibility="Hidden"/>
 
+                    <Grid Grid.Column="1" Grid.Row="2">
+                        <Border Background="#252525"
+                                CornerRadius="8"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Width="500"
+                                Height="50"
+                                Margin="0 0">
 
+                            <TextBox x:Name="billnamebox"
+                                        Width="480"
+                                        Height="40"
+                                        Background="Transparent"
+                                        Foreground="LightGray"
+                                        FontSize="18"
+                                        FontWeight="Light"
+                                        VerticalAlignment="Center"
+                                        Text=""
+                                        TextDecorations="None"/>
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="4"
+                                                          ShadowDepth="2"
+                                                          Color="#000"
+                                                          Opacity=".5"
+                                                          Direction="270"/>
+                            </Border.Effect>
+                        </Border>
+                        <TextBlock Text="Bill Name"
+                                    FontWeight="SemiBold"
+                                    FontSize="16"
+                                    TextAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Foreground="Gray"
+                                    IsHitTestVisible="False"
+                                    Margin="30 0">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=billnamebox}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
 
-                        <Border.Effect>
-                            <DropShadowEffect  BlurRadius="2" ShadowDepth="1" Direction="270" Color="#000" Opacity=".1"/>
-                        </Border.Effect>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="LightGray"/>
-                            <Setter Property="Foreground" Value="LightGray" />
+                        </TextBlock>
 
-                        </Trigger>
-                        <Trigger Property="IsFocused" Value="true">
-                            <Setter Property="Foreground" Value="LightGray" />
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="#2c2c2c"/>
-                            <Setter Property="BorderThickness" TargetName="border" Value="1" />
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
